@@ -1,7 +1,6 @@
 {
   "name": "sellerhub-ai",
   "version": "1.0.0",
-  "description": "App para vendedores Mercado Livre e Shopee",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

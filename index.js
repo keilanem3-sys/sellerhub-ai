@@ -1,11 +1,12 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
+
+const PORT = process.env.PORT || 8080
 
 app.get('/', (req, res) => {
-  res.send('🚀 SellerHub AI está online!');
-});
+  res.send('App funcionando no Railway 🚀')
+})
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(Servidor rodando na porta ${PORT});
-});
+  console.log(Servidor rodando na porta ${PORT})
+})

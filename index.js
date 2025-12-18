@@ -11,3 +11,4 @@ app.listen(PORT, () => {
   console.log(Servidor iniciado na porta ${PORT});
 });
 require("./escr/servidor");
+console.log(Servidor iniciado na porta ${PORT});

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
   res.send("Servidor SellerHub rodando com sucesso 🚀");
@@ -10,4 +10,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(Servidor iniciado na porta ${PORT});
 });
-console.log(Servidor iniciado na porta ${PORT});

@@ -3,12 +3,15 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// rota principal
+app.use(express.json());
+
 app.get("/", (req, res) => {
-  res.send("App rodando com sucesso 🚀");
+  res.json({
+    status: "ok",
+    message: "Backend SellerHub rodando com sucesso 🚀"
+  });
 });
 
-// iniciar servidor
 app.listen(PORT, () => {
-  console.log(Servidor rodando na porta ${PORT});
+  console.log("Servidor iniciado na porta " + PORT);
 });

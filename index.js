@@ -1,12 +1,12 @@
-{
-  "name": "graca-autentica",
-  "version": "1.0.0",
-  "description": "App Node simples",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  }
-}
+const express = require("express");
+
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+app.get("/", (req, res) => {
+  res.send("Servidor rodando com sucesso 🚀");
+});
+
+app.listen(PORT, () => {
+  console.log(Servidor rodando na porta ${PORT});
+});

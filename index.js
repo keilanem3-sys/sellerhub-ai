@@ -12,3 +12,6 @@ app.listen(PORT, () => {
 });
 require("./escr/servidor");
 console.log(Servidor iniciado na porta ${PORT});
+"scripts": {
+  "start": "node index.js"
+}

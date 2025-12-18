@@ -32,3 +32,6 @@ app.get("/test-db", async (req, res) => {
 app.listen(PORT, () => {
   console.log("Servidor rodando na porta", PORT);
 });
+"scripts": {
+  "start": "node server.js"
+}

@@ -1,3 +1,4 @@
+const statusRoutes = require("./routes/status");
 const express = require("express");
 const app = express();
 

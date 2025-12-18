@@ -1,12 +1,12 @@
-const express = require('express')
-const app = express()
+const express = require("express");
 
-const PORT = process.env.PORT || 8080
+const app = express();
+const PORT = process.env.PORT || 8080;
 
-app.get('/', (req, res) => {
-  res.send('App funcionando no Railway 🚀')
-})
+app.get("/", (req, res) => {
+  res.send("Servidor rodando com sucesso 🚀");
+});
 
 app.listen(PORT, () => {
-  console.log(Servidor rodando na porta ${PORT})
-})
+  console.log(Servidor rodando na porta ${PORT});
+});

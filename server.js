@@ -42,8 +42,13 @@ app.get("/users", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
+app.post("/login", (req, res) => {
+  // código do login
+});
+
 app.listen(PORT, () => {
-  console.log("Servidor rodando na porta", PORT);
+  console.log("Servidor rodando");
 });
 app.get("/status", (req, res) => {
   res.json({ status: "ok", servidor: "online" });

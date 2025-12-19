@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 // importar rotas
-const statusRoutes = require("./rotas/status");
+const statusRoutes = require("./routes/status");
 
 const PORT = process.env.PORT || 3000;
 

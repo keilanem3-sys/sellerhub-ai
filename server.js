@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
 
-// importar rotas
 const statusRoutes = require("./routes/status");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 // rota principal
 app.get("/", (req, res) => {

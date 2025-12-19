@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 
 /* ======================
-   ROTAS DA API (PRIMEIRO)
+   ROTAS DA API (SEMPRE PRIMEIRO)
 ====================== */
 
 app.get("/health", (req, res) => {
@@ -20,12 +20,7 @@ app.get("/users", (req, res) => {
 app.post("/login", (req, res) => {
   const { email, senha } = req.body;
 
-  const usuarioTeste = {
-    email: "teste@sellerhub.com",
-    senha: "123456"
-  };
-
-  if (email === usuarioTeste.email && senha === usuarioTeste.senha) {
+  if (email === "teste@sellerhub.com" && senha === "123456") {
     return res.json({
       sucesso: true,
       mensagem: "Login realizado com sucesso"
@@ -39,7 +34,7 @@ app.post("/login", (req, res) => {
 });
 
 /* ======================
-   PÁGINA HTML (POR ÚLTIMO)
+   ROTA PRINCIPAL (SEMPRE POR ÚLTIMO)
 ====================== */
 
 app.get("/", (req, res) => {
@@ -47,7 +42,7 @@ app.get("/", (req, res) => {
     <!DOCTYPE html>
     <html lang="pt-BR">
     <head>
-      <meta charset="UTF-8">
+      <meta charset="UTF-8" />
       <title>Graça Autêntica</title>
       <style>
         body {
@@ -86,7 +81,6 @@ app.get("/", (req, res) => {
 ====================== */
 
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
-  console.log(Servidor rodando na porta ${PORT});
+  console.log("Servidor rodando na porta " + PORT);
 });

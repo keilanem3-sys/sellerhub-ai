@@ -5,14 +5,12 @@ const statusRoutes = require("./routes/status");
 
 const PORT = process.env.PORT;
 
-// rota principal
 app.get("/", (req, res) => {
-  res.send("Servidor rodando com sucesso 🚀");
+  res.send("Servidor rodando 🚀");
 });
 
-// usar rotas
 app.use("/", statusRoutes);
 
 app.listen(PORT, () => {
-  console.log(Servidor rodando na porta ${PORT});
+  console.log("Servidor iniciado");
 });

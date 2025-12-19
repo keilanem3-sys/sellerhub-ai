@@ -1,29 +1,31 @@
 const express = require("express");
-// const { Pool } = require("pg"); // descomentaremos depois, quando for usar banco
 
 const app = express();
 app.use(express.json());
 
-/* =========================
-   ROTAS BÁSICAS
-========================= */
-
+// Rota principal
 app.get("/", (req, res) => {
   res.send("API SellerHub rodando 🚀");
 });
 
+// Health check
 app.get("/health", (req, res) => {
   res.send("API rodando 🚀");
 });
 
+// Status
 app.get("/status", (req, res) => {
   res.json({ status: "ok", servidor: "online" });
 });
 
-/* =========================
-   LOGIN (USUÁRIO TESTE)
-========================= */
+// Usuários
+app.get("/users", (req, res) => {
+  res.json([
+    { id: 1, nome: "Usuário teste" }
+  ]);
+});
 
+// Login (APENAS UMA VEZ)
 app.post("/login", (req, res) => {
   const { email, senha } = req.body;
 
@@ -45,22 +47,9 @@ app.post("/login", (req, res) => {
   });
 });
 
-/* =========================
-   USUÁRIOS (TESTE)
-========================= */
-
-app.get("/users", (req, res) => {
-  res.json([
-    { id: 1, nome: "Usuário teste" }
-  ]);
-});
-
-/* =========================
-   SERVIDOR
-========================= */
-
+// Porta
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(Servidor rodando na porta ${PORT});
+  console.log("Servidor rodando na porta", PORT);
 });

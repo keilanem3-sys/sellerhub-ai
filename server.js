@@ -13,13 +13,10 @@ app.get("/health", (req, res) => {
   res.send("API rodando 🚀");
 });
 
-app.get("/users", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT * FROM users");
-    res.json(result.rows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+app.get("/users", (req, res) => {
+  res.json([
+    { id: 1, nome: "Usuário teste" }
+  ]);
 });
 
 const PORT = process.env.PORT || 3000;

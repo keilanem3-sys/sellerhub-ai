@@ -3,6 +3,7 @@ const app = express();
 
 const statusRoutes = require("./routes/status");
 
+// 🚨 NUNCA use porta fixa no Railway
 const PORT = process.env.PORT;
 
 app.get("/", (req, res) => {
@@ -11,6 +12,6 @@ app.get("/", (req, res) => {
 
 app.use("/", statusRoutes);
 
-app.listen(PORT, () => {
-  console.log("Servidor iniciado");
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("Servidor iniciado na porta " + PORT);
 });

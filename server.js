@@ -8,7 +8,9 @@ app.use(express.json());
 //   connectionString: process.env.DATABASE_URL,
  //  ssl: { rejectUnauthorized: false }
 // });
-
+app.get("/", (req, res) => {
+  res.send("API SellerHub rodando 🚀");
+});
 app.get("/health", (req, res) => {
   res.send("API rodando 🚀");
 });

@@ -3,11 +3,11 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-// ROTA DE SAÚDE (OBRIGATÓRIA NO RAILWAY)
+// ROTA DE SAÚDE
 app.get("/", (req, res) => {
   res.status(200).send("API SellerHub rodando 🚀");
 });
 
 app.listen(PORT, "0.0.0.0", () => {
- console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });

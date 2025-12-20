@@ -3,6 +3,10 @@ const app = express();
 
 const pool = require("./db");
 
+pool.query("SELECT 1")
+  .then(() => console.log("✅ Banco conectado com sucesso"))
+  .catch(err => console.error("❌ Erro ao conectar no banco:", err));
+
 const PORT = process.env.PORT || 8080;
 
 app.use(express.json());

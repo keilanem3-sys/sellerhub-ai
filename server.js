@@ -27,5 +27,5 @@ app.get("/users", (req, res) => {
 
 // 🚀 SERVIDOR
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(Servidor rodando na porta ${PORT});
+  console.log(`Servidor rodando na porta ${PORT}`);
 });

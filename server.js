@@ -5,15 +5,12 @@ const pool = require("./db");
 
 const PORT = process.env.PORT || 8080;
 
-// Middleware para JSON
 app.use(express.json());
 
-// Rota raiz
 app.get("/", (req, res) => {
   res.status(200).send("API SellerHub rodando 🚀");
 });
 
-// Rota status
 app.get("/status", (req, res) => {
   res.status(200).json({
     status: "ok",
@@ -22,15 +19,15 @@ app.get("/status", (req, res) => {
   });
 });
 
-// Rota users (base real)
-app.get("/users", (req, res) => {
-  res.status(200).json({
-    users: [],
-    message: "Rota /users funcionando corretamente"
-  });
+app.get("/users", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM users");
+    res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao buscar usuários" });
+  }
 });
 
-// Servidor
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

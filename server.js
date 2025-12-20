@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const pool = require("./db");
+const pool = require("./db"); // ✅ VEM DO db.js
 
 const PORT = process.env.PORT || 8080;
 
@@ -19,17 +19,16 @@ app.get("/status", (req, res) => {
   });
 });
 
-const { Pool } = require("pg");
-
-const pool = new Pool({
-  connectionString: process.env.URL_DO_BANCO_DE_DADOS,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+app.get("/users", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM users");
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
-module.exports = pool;
-
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(Servidor rodando na porta ${PORT});
 });

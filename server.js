@@ -1,16 +1,14 @@
 const express = require("express");
 const app = express();
 
-app.use(express.json());
-
 const PORT = process.env.PORT || 8080;
 
-// HEALTH CHECK
+// 🔹 ROTA DE SAÚDE (Railway)
 app.get("/", (req, res) => {
   res.status(200).send("API SellerHub rodando 🚀");
 });
 
-// STATUS
+// 🔹 ROTA STATUS (JSON)
 app.get("/status", (req, res) => {
   res.status(200).json({
     status: "ok",
@@ -19,13 +17,15 @@ app.get("/status", (req, res) => {
   });
 });
 
-// USERS (rota de teste)
+// 🔹 ROTA USERS (teste)
 app.get("/users", (req, res) => {
   res.status(200).json({
+    users: [],
     message: "Rota de usuários funcionando"
   });
 });
 
+// 🚀 SERVIDOR
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(Servidor rodando na porta ${PORT});
 });

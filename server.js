@@ -21,9 +21,10 @@ app.get("/status", (req, res) => {
 
 app.get("/users", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM users");
+    const result = await pool.query('SELECT * FROM "Usuários"');
     res.status(200).json(result.rows);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Erro ao buscar usuários" });
   }
 });

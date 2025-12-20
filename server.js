@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const pool = require("./db"); // ✅ VEM DO db.js
+const pool = require("./db"); 
 
 const PORT = process.env.PORT || 8080;
 
@@ -19,15 +19,15 @@ app.get("/status", (req, res) => {
   });
 });
 
-// app.get("/users", async (req, res) => {
-//  try {
-  //  const result = await pool.query("SELECT * FROM users");
-   // res.status(200).json(result.rows);
- // } catch (error) {
-   // console.error(error);
-  //  res.status(500).json({ error: error.message });
-//  }
-// });
+ app.get("/users", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM users");
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+ });
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor rodando na porta ${PORT}`);

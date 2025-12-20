@@ -19,15 +19,16 @@ app.get("/status", (req, res) => {
   });
 });
 
-app.get("/users", async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM "Usuários"');
-    res.status(200).json(result.rows);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao buscar usuários" });
-  }
+const { Pool } = require("pg");
+
+const pool = new Pool({
+  connectionString: process.env.URL_DO_BANCO_DE_DADOS,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
+
+module.exports = pool;
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor rodando na porta ${PORT}`);

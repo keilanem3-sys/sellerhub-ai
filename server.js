@@ -1,58 +1,28 @@
 const express = require("express");
-const { Pool } = require("pg");
+const pool = require("./db"); // 👈 USA O DB.JS
 
 const app = express();
 app.use(express.json());
 
 // ===============================
-// CONEXÃO COM O BANCO (PUBLIC URL)
-// ===============================
-const pool = new Pool({
-  connectionString: process.env.DATABASE_PUBLIC_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
-
-// ===============================
-// TESTA CONEXÃO E CRIA TABELA
-// ===============================
-async function initDatabase() {
-  try {
-    await pool.query("SELECT 1");
-    console.log("✅ Banco conectado com sucesso");
-
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS users (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
-        email VARCHAR(150) UNIQUE NOT NULL,
-        created_at TIMESTAMP DEFAULT NOW()
-      );
-    `);
-
-    console.log("✅ Tabela users criada/verificada com sucesso");
-  } catch (error) {
-    console.error("❌ ERRO BANCO:", error);
-  }
-}
-
-initDatabase();
-
-// ===============================
-// ROTAS
+// TESTE DE VIDA
 // ===============================
 app.get("/health", (req, res) => {
   res.json({ status: "ok", api: "online" });
 });
 
+// ===============================
+// USERS
+// ===============================
 app.get("/users", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM users ORDER BY id DESC");
+    const result = await pool.query(
+      "SELECT * FROM users ORDER BY id DESC"
+    );
     res.json(result.rows);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao buscar usuários" });
+    console.error("ERRO USERS:", error);
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -71,8 +41,8 @@ app.post("/users", async (req, res) => {
 
     res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao criar usuário" });
+    console.error("ERRO POST USERS:", error);
+    res.status(500).json({ error: error.message });
   }
 });
 

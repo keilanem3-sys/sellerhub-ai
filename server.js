@@ -5,17 +5,17 @@ const app = express();
 app.use(express.json());
 
 // ===============================
-// CONFIGURAÇÃO DO BANCO
+// CONEXÃO COM O BANCO (PUBLIC URL)
 // ===============================
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_PUBLIC_URL,
   ssl: {
     rejectUnauthorized: false,
   },
 });
 
 // ===============================
-// TESTE DE CONEXÃO + CRIA TABELA
+// TESTA CONEXÃO E CRIA TABELA
 // ===============================
 async function initDatabase() {
   try {
@@ -42,13 +42,10 @@ initDatabase();
 // ===============================
 // ROTAS
 // ===============================
-
-// Health check
 app.get("/health", (req, res) => {
   res.json({ status: "ok", api: "online" });
 });
 
-// Listar usuários
 app.get("/users", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM users ORDER BY id DESC");
@@ -59,7 +56,6 @@ app.get("/users", async (req, res) => {
   }
 });
 
-// Criar usuário
 app.post("/users", async (req, res) => {
   const { name, email } = req.body;
 
